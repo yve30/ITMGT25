@@ -37,7 +37,11 @@ def shift_letter(letter, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    return chr(ord(letter) + shift)
+    if(letter == ' '):
+        return ' '
+
+    shift = (shift + ord(letter.title()) - 65) % 26
+    return str(chr(shift + 65))
 
 def caesar_cipher(message, shift):
     '''Caesar Cipher. 
@@ -60,8 +64,8 @@ def caesar_cipher(message, shift):
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     result = ""
-    for i in range(len(message)):
-        result += chr((ord(message[i]) + shift-65) % 26 + 65)
+    for characters in message:
+        result += shift_letter(characters, shift)
     return result
 
 def shift_by_letter(letter, letter_shift):
@@ -92,15 +96,12 @@ def shift_by_letter(letter, letter_shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    
-    if letter == " " and letter_shift == _:
-        return print()
-    elif letter_shift == _:
-        return letter
-    elif (ord(letter) + (ord(letter_shift) - 65)) > ord('Z'):
-        return chr((ord(letter) + ord(letter_shift)) - ord('Z'))
-    elif (ord(letter) + (ord(letter_shift) - 65)) < ord('Z'):
-        return chr(ord(letter) + (ord(letter_shift) - 65)) 
+    if(letter == ' '):
+        return ' '
+
+    shift_ordinal = ord(letter_shift.title()) - 65
+    # then we shift the input
+    return shift_letter(letter, shift_ordinal)
     
 def vigenere_cipher(message, key):
     '''Vigenere Cipher. 
