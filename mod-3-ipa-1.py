@@ -134,25 +134,31 @@ def vigenere_cipher(message, key):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    if len(message) == len(key):
-        y = []
-        for i in range(len(message)):
-            v = (ord(message[i]) + ord(key[i])) % 26
-            v += ord('A')
-            y.append(chr(v))
-        return("".join(y))
-    else:
-        y = []
-        k = list(key)
-        for i in range(len(message)-len(key)):
-            k.append(k[i%len(key)])
-            B = list("".join(k))
-            
-        for i in range(len(message)):
-            z = (ord(message[i])+ord(B[i]))%26
-            z += ord('A')
-            y.append(chr(z))
-        return("".join(y))         
+    for i in range(len(message)):
+        if len(message) == len(key):
+            encrypt_text = []
+            for i in range(len(message)):
+                if message[i] == " ":
+                    encrypt_text.append(" ")
+                else:
+                    x = (ord(message[i]) + ord(key[i])) % 26
+                    x += ord('A')
+                    encrypt_text.append(chr(x))
+            return("" . join(encrypt_text))
+        else:
+            encrypt_text = []
+            key = list(key)
+            for i in range(len(message) - len(key)):
+                key.append(key[i % len(key)])
+                P = list("".join(key))
+            for i in range(len(message)):
+                if message[i] == " ":
+                    encrypt_text.append(" ")
+                else:
+                    x = (ord(message[i]) + ord(P[i])) % 26
+                    x += ord('A')
+                    encrypt_text.append(chr(x))
+            return("".join(encrypt_text))      
             
 def scytale_cipher(message, shift):
     '''Scytale Cipher.
